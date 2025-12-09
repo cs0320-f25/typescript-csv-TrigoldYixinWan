@@ -38,22 +38,3 @@ A FIFO queue as JSON using a node-based linked structure is selected because itâ
 #### Total estimated time it took to complete project:6~8 hours
 #### Link to GitHub Repo:  
 
-### Supplemental Challenge: Queue schema (CSCI 1340)
-
-We represent a FIFO queue as JSON using a node-based linked structure, validated via Zod v4:
-
-- Queue: `{ size: number, head: Node | null }`
-- Node: `{ value: T, next: Node | null }`
-
-Why this shape:
-- `z.lazy` enables recursion for `Node`.
-- `size` allows an integrity check; we refine to ensure the node count matches `size`.
-
-Where to look:
-- File: `src/schemas/queue.ts` â€” `makeQueueSchema<T>(elem: z.ZodType<T>)` builds a generic `Queue<T>` schema; examples `NumberQueueSchema`, `exampleQueueEmpty`, `exampleQueue123`.
-- Tests: `tests/queue-schema.test.ts` cover valid and invalid cases and generic element types.
-
-Limitations and notes for hand-in:
-- Enforcing FIFO operations is behavioral (runtime), not a JSON constraint; the schema validates structure only.
-- Very deep queues may require streaming checks; cycles are not representable in JSON and would violate the schema.
-- A hard maximum length could be added via `.refine` with configuration if needed.
