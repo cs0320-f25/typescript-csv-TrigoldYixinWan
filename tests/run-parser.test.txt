@@ -1,0 +1,37 @@
+// // tests/run-parser.test.ts
+// import { parseCSV } from "../src/run-parser";
+// import { z } from "zod";
+// import * as path from "path";
+
+// const PEOPLE_CSV_PATH = path.join(__dirname, "../data/people.csv");
+
+// // 把 [string, number] -> { name, age }
+// const PersonRowSchema = z
+//   .tuple([z.string(), z.coerce.number()])
+//   .transform((t) => ({ name: t[0], age: t[1] }));
+// type Person = z.infer<typeof PersonRowSchema>;
+
+// /**
+//  * no schema，string[][]
+//  */
+// test("parseCSV without schema returns string[][]", async () => {
+//   const rows = await parseCSV(PEOPLE_CSV_PATH);
+//   expect(Array.isArray(rows)).toBe(true);
+//   expect(rows.length).toBeGreaterThan(0);
+//   expect(Array.isArray(rows[0])).toBe(true);
+// });
+
+// /**
+//  * input a schema，return (list of )objects
+//  */
+// test("parseCSV with schema returns transformed objects", async () => {
+//   const people: Person[] = await parseCSV(PEOPLE_CSV_PATH, PersonRowSchema);
+//   expect(Array.isArray(people)).toBe(true);
+//   expect(people.length).toBeGreaterThan(0);
+
+//   const first = people[0];
+//   expect(first).toHaveProperty("name");
+//   expect(first).toHaveProperty("age");
+//   expect(typeof first.name).toBe("string");
+//   expect(typeof first.age).toBe("number");
+// });

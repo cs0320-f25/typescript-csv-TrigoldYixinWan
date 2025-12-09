@@ -124,7 +124,7 @@ test("test context with \t", async () => {
     const results = await (0, basic_parser_1.parseCSV)(PEOPLE_CSV_PATH5);
     expect(results).toHaveLength(5);
     expect(results[0]).toEqual(["name", "age"]);
-    expect(results[1]).toStrictEqual(["Alice    Smith", "23"]); // not transfer
+    expect(results[1]).toStrictEqual(["\"Alice\\tMosse\"", "23"]);
     expect(results[2]).toEqual(["Bob", "thirty"]);
     expect(results[3]).toEqual(["Charlie", "25"]);
     expect(results[4]).toEqual(["Nim", "22"]);

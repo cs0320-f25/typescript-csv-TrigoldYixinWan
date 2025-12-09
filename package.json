@@ -4,7 +4,10 @@
   "scripts": {
     "test": "jest",
     "build": "npx ts-node ./src/run-parser.ts",
-    "parser": "npx ts-node --esm ./src/run-parser.ts"
+    "parser": "npx ts-node src/run-parser.ts",
+    "queue": "npx ts-node src/run-parser.ts",
+    "people": "npx ts-node src/run-people.ts"
+    
     
   },
   "keywords": [],

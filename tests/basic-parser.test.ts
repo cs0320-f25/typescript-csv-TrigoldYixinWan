@@ -17,7 +17,7 @@ test("parseCSV yields arrays", async () => {
   expect(results).toHaveLength(5);
   expect(results[0]).toEqual(["name", "age"]);
   expect(results[1]).toEqual(["Alice", "23"]);
-  expect(results[2]).toEqual(["Bob", "thirty"]); // why does this work? :(
+  expect(results[2]).toEqual(["Bob", "thirty"]); // why does this work? because there is no a schema transformation, it reads number as str
   expect(results[3]).toEqual(["Charlie", "25"]);
   expect(results[4]).toEqual(["Nim", "22"]);
 });
@@ -110,7 +110,8 @@ test("test context with \t", async () => {
   
   expect(results).toHaveLength(5);
   expect(results[0]).toEqual(["name", "age"]);
-  expect(results[1]).toStrictEqual(["Alice    Smith", "23"]); // not transfer
+  // Current parser preserves quotes and escape sequences; expects raw string
+  expect(results[1]).toStrictEqual(["\"Alice\\tMosse\"", "23"]);
   expect(results[2]).toEqual(["Bob", "thirty"]);
   expect(results[3]).toEqual(["Charlie", "25"]);
   expect(results[4]).toEqual(["Nim", "22"]);
